@@ -10,6 +10,7 @@ const {PAGES} = CONSTANTS;
 const AccountForm = (props) => {
     const [page,setPage]=useContext(PageContext);
 
+
     const nextPage = page === PAGES.LOGIN ? PAGES.SIGNUP : PAGES.LOGIN;
     
     return (
