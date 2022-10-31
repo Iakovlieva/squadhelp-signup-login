@@ -5,9 +5,9 @@ export const SCHEMA = yup.object({
     lastName: yup.string().required('Field cannot be empty'),
     displayName: yup.string().required().min(5,'Display name should be more than 4 characters'),    
     email: yup.string().required().email('Please check the format of email address'),
-    pass: yup.string().required('Password confirmation needs to match original password'),
-    passConfirm: yup.string().required('Password confirmation needs to match original password')
-    // joinUs: yup.string().required('Please specify whether you are a Creative or a Buyer')
+    pass: yup.string().oneOf([yup.ref('passConfirm'), null], 'Password confirmation needs to match original password').required('Password confirmation needs to match original password'),
+    passConfirm: yup.string().oneOf([yup.ref('pass'), null], 'Password confirmation needs to match original password').required('Password confirmation needs to match original password'),    
+    joinUs: yup.string().required('Please specify whether you are a Creative or a Buyer')
 })
 
 export const SCHEMA_LOGIN = yup.object({ 

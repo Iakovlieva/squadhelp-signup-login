@@ -1,6 +1,5 @@
-import React,{useContext} from "react";
+import React,{useState} from "react";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { PageContext } from "../../contexts/PageContext";
 import LoginSquard from "./LoginSquad";
 import CreateAccountSquard from './CreateAccountSquad';
 import styles from "./accountform.module.css";
@@ -8,8 +7,7 @@ import CONSTANTS from '../../constants';
 const {PAGES} = CONSTANTS;
 
 const AccountForm = (props) => {
-    const [page,setPage]=useContext(PageContext);
-
+    const [page, setPage] = useState(PAGES.LOGIN);
 
     const nextPage = page === PAGES.LOGIN ? PAGES.SIGNUP : PAGES.LOGIN;
     
@@ -35,16 +33,9 @@ const AccountForm = (props) => {
     )
 }
 
-
-const Home = () =>{
-    return (
-        <h1>Hello</h1>
-    )
-}
-
 const NotFound = () => {
     return (
-        <h1> 404: Page not found</h1>
+        <h1 style={{color:'white', textAlign:'center'}}> Authorize, please</h1>
     )
 }
 

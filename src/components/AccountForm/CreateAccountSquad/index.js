@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import { SCHEMA } from  "../../../schemas";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import styles from "../accountform.module.css";
@@ -40,13 +40,14 @@ function CreateAccountSquard (props) {
         >
             {(formikProps) => { 
                 const { values, errors, touched, validateForm } =formikProps;
-                
+
                 let err1 = errors.firstName && touched.firstName ? errors.firstName : (
                         errors.lastName && touched.lastName ? errors.lastName : null); 
                 let err2 = errors.displayName && touched.displayName ? errors.displayName : (
                         errors.email && touched.email ? errors.email : null); 
-                let err3 =(touched.pass || touched.passConfirm) && ( (values.pass !== values.passConfirm ) || values.pass.length<=0 ) ? 'Password confirmation needs to match original password' : null;
-
+              //  let err3 =(touched.pass || touched.passConfirm) && ( (values.pass !== values.passConfirm ) || values.pass.length<=0 ) ? 'Password confirmation needs to match original password' : null;
+                let err3 = ((errors.pass && touched.pass) || (errors.passConfirm && touched.passConfirm)) ? errors.passConfirm : null; 
+                
                 return(
                     <div className={styles["squad-form"]}>
                         <div className={styles["slogan-info"]}> 
@@ -88,6 +89,7 @@ function CreateAccountSquard (props) {
                                         <span>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.</span>
                                     </label>
                                 </div>
+                                <ErrorMessage name="joinUs" component="p" className={styles["sign-div-err"]}/>
                             </div>
 
                             <label className={styles["sign-label"]}>
